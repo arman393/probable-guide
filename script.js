@@ -1,53 +1,224 @@
-<!DOCTYPE html>
+const frases = {
+  es: [
+    "Eres más fuerte de lo que crees.",
+    "Cada día es una nueva oportunidad.",
+    "Tu historia vale la pena."
+  ],
+  en: [
+    "You are stronger than you think.",
+    "Every day is a new opportunity.",
+    "Your story is worth telling."
+  ]
+};
 
-<html lang="es">
+const textos = {
+  es: {
+    titulo: "Tu Diario Secreto",
+    mensaje: "Escribe aquí tus pensamientos o secretos.",
+    placeholder: "¿Qué te gustaría contar hoy?",
+    boton: "Guardar entrada",
+    fraseTitulo: "Frase inspiradora del día:"
+  },
+  en: {
+    titulo: "Your Secret Diary",
+    mensaje: "Write your thoughts or secrets here.",
+    placeholder: "What would you like to share today?",
+    boton: "Save entry",
+    fraseTitulo: "Inspirational quote of the day:"
+  }
+};
 
-<head>
+const lang = navigator.language.startsWith("en") ? "en" : "es";
 
-  <meta charset="UTF-8">
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("titulo").innerText = textos[lang].titulo;
+  document.getElementById("mensaje").innerText = textos[lang].mensaje;
+  document.getElementById("entrada").placeholder = textos[lang].placeholder;
+  document.querySelector("button").innerText = textos[lang].boton;
+  document.getElementById("frase-titulo").innerText = textos[lang].fraseTitulo;
+  document.getElementById("frase").innerText =
+    frases[lang][Math.floor(Math.random() * frases[lang].length)];
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  mostrarHistorial();
+});
 
-  <title>Mi Página Personal</title>
+function guardar() {
+  const texto = document.getElementById("entrada").value;
+  if (texto.trim() !== "") {
+    const entradasGuardadas = JSON.parse(localStorage.getItem("entradas")) || [];
+    const nuevaEntrada = {
+      texto: texto,
+      fecha: new Date().toLocaleString()
+    };
+    entradasGuardadas.unshift(nuevaEntrada);
+    localStorage.setItem("entradas", JSON.stringify(entradasGuardadas));
 
-  <link rel="stylesheet" href="estilos.css">
+    mostrarHistorial();
 
-</head>
+    alert(lang === "es" ? "Entrada guardada." : "Entry saved.");
+    document.getElementById("entrada").value = "";
+  } else {
+    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
+  }
+}
 
-<body>
+function mostrarHistorial() {
+  const contenedor = document.getElementById("historial");
+  contenedor.innerHTML = "";
 
-  <header class="hero">
+  const entradas = JSON.parse(localStorage.getItem("entradas")) || [];
 
-    <div class="hero-content">
+  if (entradas.length > 0) {
+    entradas.forEach((entrada) => {
+      const div = document.createElement("div");
+      div.className = "entrada-historial";
+      div.innerHTML = `<strong>${entrada.fecha}</strong><p>${entrada.texto}</p>`;
+      contenedor.appendChild(div);
+    });
+  }
+}
+function guardar() {
 
-      <h1>Aquí va tu nombre</h1>
+  const texto = document.getElementById("entrada").value;
 
-      <p>Pon una frase inspiradora aquí</p>
+  if (texto.trim() !== "") {
 
-      <div class="features">
+    let entradas = JSON.parse(localStorage.getItem("entradas")) || [];
 
-        <div class="feature">Escribe algo aquí</div>
+    entradas.push({ texto, fecha: new Date().toLocaleString() });
 
-        <div class="feature">Otro dato importante</div>
+    localStorage.setItem("entradas", JSON.stringify(entradas));
 
-        <div class="feature">Tu mensaje especial</div>
+    alert(lang === "es" ? "Entrada guardada." : "Entry saved.");
 
-      </div>
+    document.getElementById("entrada").value = "";
 
-    </div>
+    mostrarEntradas();
 
-  </header>
+  } else {
 
-  <main class="main-section">
+    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
 
-    <h2>Aquí va tu título</h2>
+  }
 
-    <button class="btn-primary">Botón 1</button>
+}
 
-    <button class="btn-secondary">Botón 2</button>
+function mostrarEntradas() {
 
-  </main>
+  const contenedor = document.getElementById("entradas-guardadas");
 
-</body>
+  contenedor.innerHTML = "";
 
-</html>
+  const entradas = JSON.parse(localStorage.getItem("entradas")) || [];
+
+  entradas.forEach((entrada) => {
+
+    const div = document.createElement("div");
+
+    div.className = "entrada";
+
+    div.innerHTML = `<p>${entrada.texto}</p><small>${entrada.fecha}</small><hr>`;
+
+    contenedor.appendChild(div);
+
+  });
+
+}
+
+document.addEventListener("DOMContentLoaded", mostrarEntradas);
+
+mostrarEntradas();
+function nuevaFrase() {
+
+  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
+
+  document.getElementById("frase").innerText = fraseAleatoria;
+
+}
+function nuevaFrase() {
+
+  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
+
+  document.getElementById("frase").innerText = fraseAleatoria;
+
+}
+function marcarLeido(boton) {
+
+  boton.innerText = "Leído";
+
+  boton.disabled = true;
+
+}
+
+function nuevaFrase() {
+
+  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
+
+  document.getElementById("frase").innerText = fraseAleatoria;
+
+}
+function guardar() {
+
+  const texto = document.getElementById("entrada").value;
+
+  const respuestaEl = document.getElementById("respuesta");
+
+  if (texto.trim() !== "") {
+
+    let entradas = JSON.parse(localStorage.getItem("diario")) || [];
+
+    entradas.push({ texto, fecha: new Date().toLocaleString() });
+
+    localStorage.setItem("diario", JSON.stringify(entradas));
+
+    document.getElementById("entrada").value = "";
+
+    // Mostrar respuesta automática
+
+    const respuestas = {
+
+      es: [
+
+        "Gracias por compartir, todo lo que sientes es válido.",
+
+        "Tu historia importa, no estás solo.",
+
+        "Estoy aquí para escucharte siempre que lo necesites."
+
+      ],
+
+      en: [
+
+        "Thank you for sharing, your feelings are valid.",
+
+        "Your story matters, you're not alone.",
+
+        "I'm here to listen whenever you need."
+
+      ]
+
+    };
+
+    const respuestaRandom = respuestas[lang][Math.floor(Math.random() * respuestas[lang].length)];
+
+    respuestaEl.innerText = respuestaRandom;
+
+  } else {
+
+    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
+
+  }
+
+}
+
+const libros = document.querySelectorAll('.libro');
+
+libros.forEach(libro => {
+
+  libro.addEventListener('click', () => {
+
+    libro.classList.toggle('seleccionado');
+
+  });
+
+});

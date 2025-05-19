@@ -1,78 +1,55 @@
-<!DOCTYPE html>
+<div class="diario-container">
 
-<html lang="es">
+  <h1 id="titulo">Mi Diario Personal</h1>
 
-<head>
+  <p id="mensaje">Escribe aquí tus pensamientos y guárdalos.</p>
 
-  <meta charset="UTF-8">
+  <textarea id="entrada" placeholder="Escribe tu pensamiento..."></textarea>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <button onclick="guardar()">Guardar pensamiento</button>
 
-  <title>Mi Página Personal</title>
+  <p id="respuesta" class="respuesta"></p>
 
-  <link rel="stylesheet" href="estilos.css">
+  <iframe width="100%" height="200" src="https://www.youtube.com/embed/Z4jGkBGWbNw" frameborder="0" allowfullscreen></iframe>
 
-</head>
+  <h2>Tus pensamientos guardados</h2>
 
-<body>
+  <div id="entradas-guardadas"></div>
 
-  <header class="hero">
+  <h2 id="frase-titulo">Frase inspiradora del día</h2>
 
-    <div class="hero-content">
+  <p id="frase"></p>
 
-      <h1>Armando jose santana</h1>
+  <button onclick="nuevaFrase()" id="btn-frase">Otra frase</button>
 
-      <p>siempre-trato de dar lo mejor de mi😁</p>
+  <h2>Libros que pueden ayudarte</h2>
 
-      <div class="features">
+  <div id="listaLibros">
 
-      <div class="feature">programador 
-          de IA</div>
+    <div class="libro">La historia de la humanidad <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-        <div class="feature">HTML CSS  - JS</div>
+    <div class="libro">Aventuras en la selva <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-        <div class="feature">nunca te rindas</div>
+    <div class="libro">Ciencia ficción del futuro <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-      </div>
+    <div class="libro">Misterios sin resolver <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-    </div>
+    <div class="libro">Fantasía épica <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-  </header>
+    <div class="libro">Relatos de terror <button onclick="marcarLeido(this)">Marcar como leído</button></div>
 
-  <main class="main-section">
+  </div>
 
-    
+  <h3>Libros recomendados con enlaces</h3>
 
-    <button class="btn-primary">Botón 1</button>
+  <ul>
 
-    <button class="btn-secondary">Botón 2</button>
-<main class="main-section">
+    <li><a href="https://example.com/libro1" target="_blank" rel="noopener noreferrer">El poder del ahora</a></li>
 
-  <h2>Bienvenido a mclassi blog</h2>
+    <li><a href="https://example.com/libro2" target="_blank" rel="noopener noreferrer">Los secretos de la mente millonaria</a></li>
 
-  <p>Hola, mi nombre es Armando José Santana y este es mi espacio personal donde comparto mi camino aprendiendo programación y tecnología.</p>
+  </ul>
 
-  <section>
+  <div id="historial"></div>
 
-  <h2>Un video que me inspira</h2>
-<iframe width="300" height="530" src="https://www.youtube.com/embed/kvS1Fx5231o" frameborder="0" allowfullscreen></iframe>
-    
-    <p>Si deseas comunicarte con el mejor programador del mundo, contáctame aquí:</p>
-
-<a href="https://wa.me/18292335814?text=Hola,%20quiero%20hablar%20con%20el%20mejor%20programador" target="_blank">
-
-  Escríbeme por WhatsApp
-  
-  <p>Correo: <a href="mailto:armandojosesantana972@gmail.com">armandojosesantana972@gmail.com</a></p>
-
-<p><small>Esta página es de propiedad privada y el contenido es confidencial.</small></p>
-
-</a>
-
-</section>
-</main>
-  </main>
-
-</body>
-
-</html>
+</div>

@@ -1,159 +1,877 @@
-* {
-
-  margin: 0;
-
-  padding: 0;
-
-  box-sizing: border-box;
-
-}
+/* Fondo oscuro elegante */
 
 body {
 
-  font-family: 'Arial', sans-serif;
+  background: #121212;
 
-  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  background-color: #f0f0f0;
+  margin: 0;
 
-}
-
-/* Encabezado con fondo */
-
-.hero {
-
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80');
-
-  background-size: cover;
-
-  background-position: center;
-
-  padding: 60px 20px;
-
-  text-align: center;
-
-}
-
-.hero-content {
-
-  max-width: 700px;
-
-  margin: auto;
-
-  background-color: rgba(0, 0, 0, 0.6);
-
-  padding: 40px;
-
-  border-radius: 12px;
-
-}
-
-.hero h1 {
-
-  font-size: 32px;
-
-  margin-bottom: 10px;
-
-}
-
-.hero p {
-
-  font-size: 18px;
-
-  margin-bottom: 25px;
-
-}
-
-.features {
+  padding: 30px 10px;
 
   display: flex;
 
-  justify-content: space-around;
+  justify-content: center;
 
-  flex-wrap: wrap;
+  min-height: 100vh;
 
-  gap: 15px;
+  color: #eee;
 
 }
 
-.feature {
+/* Contenedor compacto y limpio */
 
-  background-color: #fff;
+.diario-container {
 
-  color: #001f3f;
+  background: #1e1e1e;
+
+  border-radius: 16px;
+
+  padding: 30px 35px;
+
+  max-width: 600px;
+
+  width: 100%;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+
+}
+
+/* Títulos con tipografía clara y compacta */
+
+h1, h2 {
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  margin: 0 0 12px;
+
+  color: #ff9800;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  user-select: none;
+
+}
+
+/* Texto descriptivo */
+
+#mensaje {
+
+  font-style: italic;
+
+  text-align: center;
+
+  font-size: 1rem;
+
+  color: #bbb;
+
+  margin-bottom: 16px;
+
+}
+
+/* Área de texto compacta y oscura */
+
+textarea#entrada {
+
+  width: 100%;
+
+  min-height: 100px;
+
+  background: #2c2c2c;
+
+  border: none;
+
+  border-radius: 12px;
 
   padding: 15px 20px;
 
-  border-radius: 10px;
-
-  font-weight: bold;
-
-  width: 30%;
-
-  min-width: 100px;
-
-  text-align: center;
-
-}
-
-/* Sección principal */
-
-.main-section {
-
-  background-color: #fff;
-
-  color: #111;
-
-  padding: 40px 20px;
-
-  text-align: center;
-
-}
-
-.btn-primary {
-
-  background-color: #007bff;
-
-  color: white;
-
-  padding: 12px 25px;
-
-  margin: 10px;
-
-  border: none;
-
-  border-radius: 30px;
+  color: #eee;
 
   font-size: 16px;
 
-  cursor: pointer;
+  font-weight: 500;
+
+  resize: vertical;
+
+  box-shadow: inset 0 0 6px #00000080;
+
+  transition: background 0.3s ease;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
-.btn-secondary {
+textarea#entrada::placeholder {
 
-  background-color: #20c997;
+  color: #666;
 
-  color: white;
+}
 
-  padding: 12px 25px;
+textarea#entrada:focus {
 
-  margin: 10px;
+  outline: none;
+
+  background: #3a3a3a;
+
+}
+
+/* Botones compactos y llamativos */
+
+button {
+
+  align-self: center;
+
+  background-color: #ff9800;
 
   border: none;
 
-  border-radius: 30px;
+  border-radius: 24px;
 
-  font-size: 16px;
+  padding: 12px 36px;
+
+  color: #121212;
+
+  font-weight: 700;
+
+  font-size: 1.05rem;
 
   cursor: pointer;
 
+  box-shadow: 0 4px 15px #ff980099;
+
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+
+  user-select: none;
+
 }
 
-.btn-primary:hover,
+button:hover {
 
-.btn-secondary:hover {
+  background-color: #e68a00;
 
-  opacity: 0.85;
+  box-shadow: 0 6px 20px #e68a0099;
+
+  transform: scale(1.05);
+
+}
+
+button:active {
+
+  transform: scale(0.95);
+
+}
+
+/* Respuesta o mensaje */
+
+.respuesta {
+
+  text-align: center;
+
+  font-weight: 600;
+
+  font-size: 1rem;
+
+  color: #a0ffa0cc;
+
+  min-height: 20px;
+
+  user-select: none;
+
+}
+
+/* Video compacto con bordes redondeados */
+
+iframe {
+
+  border-radius: 12px;
+
+  border: none;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+
+  max-width: 100%;
+
+  height: 180px;
+
+  display: block;
+
+  margin: 0 auto;
+
+}
+
+/* Pensamientos guardados con fondo oscuro */
+
+#entradas-guardadas {
+
+  background: #2a2a2a;
+
+  border-radius: 14px;
+
+  max-height: 240px;
+
+  overflow-y: auto;
+
+  padding: 20px 25px;
+
+  font-size: 1rem;
+
+  line-height: 1.5;
+
+  color: #ddd;
+
+  box-shadow: inset 0 0 15px #000000a0;
+
+}
+
+/* Frase inspiradora estilizada */
+
+#frase {
+
+  background: #ffb74d;
+
+  color: #4e342e;
+
+  font-weight: 700;
+
+  font-style: italic;
+
+  font-size: 1.2rem;
+
+  padding: 18px 30px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  box-shadow: 0 6px 20px #ffb74d99;
+
+  user-select: none;
+
+}
+
+/* Lista de libros compacta */
+
+#listaLibros {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+}
+
+.libro {
+
+  background: #3a3a3a;
+
+  padding: 15px 20px;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  color: #fff;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-shadow: 0 4px 14px #000000cc;
+
+  transition: background-color 0.3s ease;
+
+}
+
+.libro:hover {
+
+  background-color: #4a4a4a;
+
+}
+
+.libro button {
+
+  background-color: #ff9800;
+
+  border-radius: 20px;
+
+  padding: 8px 18px;
+
+  font-weight: 700;
+
+  font-size: 0.9rem;
+
+  box-shadow: 0 4px 15px #ff980099;
+
+  color: #121212;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+
+}
+
+.libro button:hover {
+
+  background-color: #e68a00;
+
+  box-shadow: 0 6px 18px #e68a0099;
+
+}
+
+/* Libro marcado como leído */
+
+.libro.leido {
+
+  background: #555555cc;
+
+  color: #bbb;
+
+  font-style: italic;
+
+  text-decoration: line-through;
+
+  box-shadow: none;
+
+}
+
+/* Enlaces recomendados compactos */
+
+ul {
+
+  padding-left: 20px;
+
+  color: #ddd;
+
+  font-weight: 600;
+
+}
+
+ul li a {
+
+  color: #ffb74d;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: color 0.3s ease;
+
+}
+
+ul li a:hover {
+
+  color: #fff;
+
+  text-decoration: underline;
+
+}
+
+/* Scrollbar personalizada */
+
+#entradas-guardadas::-webkit-scrollbar {
+
+  width: 8px;
+
+}
+
+#entradas-guardadas::-webkit-scrollbar-track {
+
+  background: #2a2a2a;
+
+  border-radius: 14px;
+
+}
+
+#entradas-guardadas::-webkit-scrollbar-thumb {
+
+  background: #ff9800;
+
+  border-radius: 14px;
+
+}
+
+/* Responsive para pantallas chicas */
+
+@media (max-width: 480px) {
+
+  .diario-container {
+
+    padding: 20px 15px;
+
+  }
+
+  textarea#entrada {
+
+    font-size: 14px;
+
+    min-height: 80px;
+
+  }
+
+  button {
+
+    padding: 10px 28px;
+
+    font-size: 1rem;
+
+  }
+
+  iframe {
+
+    height: 160px;
+
+  }
+
+}/* Fondo oscuro elegante */
+
+body {
+
+  background: #121212;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  margin: 0;
+
+  padding: 30px 10px;
+
+  display: flex;
+
+  justify-content: center;
+
+  min-height: 100vh;
+
+  color: #eee;
+
+}
+
+/* Contenedor compacto y limpio */
+
+.diario-container {
+
+  background: #1e1e1e;
+
+  border-radius: 16px;
+
+  padding: 30px 35px;
+
+  max-width: 600px;
+
+  width: 100%;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+
+}
+
+/* Títulos con tipografía clara y compacta */
+
+h1, h2 {
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  margin: 0 0 12px;
+
+  color: #ff9800;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  user-select: none;
+
+}
+
+/* Texto descriptivo */
+
+#mensaje {
+
+  font-style: italic;
+
+  text-align: center;
+
+  font-size: 1rem;
+
+  color: #bbb;
+
+  margin-bottom: 16px;
+
+}
+
+/* Área de texto compacta y oscura */
+
+textarea#entrada {
+
+  width: 100%;
+
+  min-height: 100px;
+
+  background: #2c2c2c;
+
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 15px 20px;
+
+  color: #eee;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  resize: vertical;
+
+  box-shadow: inset 0 0 6px #00000080;
+
+  transition: background 0.3s ease;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+textarea#entrada::placeholder {
+
+  color: #666;
+
+}
+
+textarea#entrada:focus {
+
+  outline: none;
+
+  background: #3a3a3a;
+
+}
+
+/* Botones compactos y llamativos */
+
+button {
+
+  align-self: center;
+
+  background-color: #ff9800;
+
+  border: none;
+
+  border-radius: 24px;
+
+  padding: 12px 36px;
+
+  color: #121212;
+
+  font-weight: 700;
+
+  font-size: 1.05rem;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px #ff980099;
+
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+
+  user-select: none;
+
+}
+
+button:hover {
+
+  background-color: #e68a00;
+
+  box-shadow: 0 6px 20px #e68a0099;
+
+  transform: scale(1.05);
+
+}
+
+button:active {
+
+  transform: scale(0.95);
+
+}
+
+/* Respuesta o mensaje */
+
+.respuesta {
+
+  text-align: center;
+
+  font-weight: 600;
+
+  font-size: 1rem;
+
+  color: #a0ffa0cc;
+
+  min-height: 20px;
+
+  user-select: none;
+
+}
+
+/* Video compacto con bordes redondeados */
+
+iframe {
+
+  border-radius: 12px;
+
+  border: none;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+
+  max-width: 100%;
+
+  height: 180px;
+
+  display: block;
+
+  margin: 0 auto;
+
+}
+
+/* Pensamientos guardados con fondo oscuro */
+
+#entradas-guardadas {
+
+  background: #2a2a2a;
+
+  border-radius: 14px;
+
+  max-height: 240px;
+
+  overflow-y: auto;
+
+  padding: 20px 25px;
+
+  font-size: 1rem;
+
+  line-height: 1.5;
+
+  color: #ddd;
+
+  box-shadow: inset 0 0 15px #000000a0;
+
+}
+
+/* Frase inspiradora estilizada */
+
+#frase {
+
+  background: #ffb74d;
+
+  color: #4e342e;
+
+  font-weight: 700;
+
+  font-style: italic;
+
+  font-size: 1.2rem;
+
+  padding: 18px 30px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  box-shadow: 0 6px 20px #ffb74d99;
+
+  user-select: none;
+
+}
+
+/* Lista de libros compacta */
+
+#listaLibros {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+}
+
+.libro {
+
+  background: #3a3a3a;
+
+  padding: 15px 20px;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  color: #fff;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-shadow: 0 4px 14px #000000cc;
+
+  transition: background-color 0.3s ease;
+
+}
+
+.libro:hover {
+
+  background-color: #4a4a4a;
+
+}
+
+.libro button {
+
+  background-color: #ff9800;
+
+  border-radius: 20px;
+
+  padding: 8px 18px;
+
+  font-weight: 700;
+
+  font-size: 0.9rem;
+
+  box-shadow: 0 4px 15px #ff980099;
+
+  color: #121212;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+
+}
+
+.libro button:hover {
+
+  background-color: #e68a00;
+
+  box-shadow: 0 6px 18px #e68a0099;
+
+}
+
+/* Libro marcado como leído */
+
+.libro.leido {
+
+  background: #555555cc;
+
+  color: #bbb;
+
+  font-style: italic;
+
+  text-decoration: line-through;
+
+  box-shadow: none;
+
+}
+
+/* Enlaces recomendados compactos */
+
+ul {
+
+  padding-left: 20px;
+
+  color: #ddd;
+
+  font-weight: 600;
+
+}
+
+ul li a {
+
+  color: #ffb74d;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: color 0.3s ease;
+
+}
+
+ul li a:hover {
+
+  color: #fff;
+
+  text-decoration: underline;
+
+}
+
+/* Scrollbar personalizada */
+
+#entradas-guardadas::-webkit-scrollbar {
+
+  width: 8px;
+
+}
+
+#entradas-guardadas::-webkit-scrollbar-track {
+
+  background: #2a2a2a;
+
+  border-radius: 14px;
+
+}
+
+#entradas-guardadas::-webkit-scrollbar-thumb {
+
+  background: #ff9800;
+
+  border-radius: 14px;
+
+}
+
+/* Responsive para pantallas chicas */
+
+@media (max-width: 480px) {
+
+  .diario-container {
+
+    padding: 20px 15px;
+
+  }
+
+  textarea#entrada {
+
+    font-size: 14px;
+
+    min-height: 80px;
+
+  }
+
+  button {
+
+    padding: 10px 28px;
+
+    font-size: 1rem;
+
+  }
+
+  iframe {
+
+    height: 160px;
+
+  }
 
 }
