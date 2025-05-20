@@ -3,14 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refugio - Tu espacio seguro</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Mi Diario Privado</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Bienvenido a Refugio</h1>
-    <p class="frase">"A veces, escribir es la forma más silenciosa de gritar."</p>
-    <button onclick="location.href='diario.html'">Empezar a escribir</button>
+  <div class="container" id="loginContainer">
+    <h2>Bienvenido a tu Diario</h2>
+    <input type="password" id="claveEntrada" placeholder="Ingresa tu contraseña" />
+    <button onclick="verificarClave()">Entrar</button>
+    <p id="loginMensaje"></p>
   </div>
+
+  <div class="container oculto" id="diarioContainer">
+    <h1>Mi Diario Secreto</h1>
+    <p id="fecha"></p>
+    <textarea id="entrada" placeholder="Escribe tu pensamiento..."></textarea>
+    <button onclick="guardarTexto()">Guardar</button>
+    <button onclick="borrarTodo()">Borrar todo</button>
+    <button onclick="exportarTxt()">Exportar a TXT</button>
+    <p id="mensaje"></p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="diario.js"></script>
 </body>
-</html>
+</html
