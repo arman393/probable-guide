@@ -1,224 +1,64 @@
-const frases = {
-  es: [
-    "Eres más fuerte de lo que crees.",
-    "Cada día es una nueva oportunidad.",
-    "Tu historia vale la pena."
-  ],
-  en: [
-    "You are stronger than you think.",
-    "Every day is a new opportunity.",
-    "Your story is worth telling."
-  ]
-};
+const claveSecreta = "refugio123"; // cambia esto si lo necesitas
 
-const textos = {
-  es: {
-    titulo: "Tu Diario Secreto",
-    mensaje: "Escribe aquí tus pensamientos o secretos.",
-    placeholder: "¿Qué te gustaría contar hoy?",
-    boton: "Guardar entrada",
-    fraseTitulo: "Frase inspiradora del día:"
-  },
-  en: {
-    titulo: "Your Secret Diary",
-    mensaje: "Write your thoughts or secrets here.",
-    placeholder: "What would you like to share today?",
-    boton: "Save entry",
-    fraseTitulo: "Inspirational quote of the day:"
-  }
-};
-
-const lang = navigator.language.startsWith("en") ? "en" : "es";
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("titulo").innerText = textos[lang].titulo;
-  document.getElementById("mensaje").innerText = textos[lang].mensaje;
-  document.getElementById("entrada").placeholder = textos[lang].placeholder;
-  document.querySelector("button").innerText = textos[lang].boton;
-  document.getElementById("frase-titulo").innerText = textos[lang].fraseTitulo;
-  document.getElementById("frase").innerText =
-    frases[lang][Math.floor(Math.random() * frases[lang].length)];
-
-  mostrarHistorial();
-});
-
-function guardar() {
-  const texto = document.getElementById("entrada").value;
-  if (texto.trim() !== "") {
-    const entradasGuardadas = JSON.parse(localStorage.getItem("entradas")) || [];
-    const nuevaEntrada = {
-      texto: texto,
-      fecha: new Date().toLocaleString()
-    };
-    entradasGuardadas.unshift(nuevaEntrada);
-    localStorage.setItem("entradas", JSON.stringify(entradasGuardadas));
-
-    mostrarHistorial();
-
-    alert(lang === "es" ? "Entrada guardada." : "Entry saved.");
-    document.getElementById("entrada").value = "";
+function verificarClave() {
+  const entradaClave = document.getElementById("claveEntrada").value;
+  if (entradaClave === claveSecreta) {
+    document.getElementById("loginContainer").classList.add("oculto");
+    document.getElementById("diarioContainer").classList.remove("oculto");
+    cargarTexto();
+    mostrarFecha();
   } else {
-    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
+    document.getElementById("loginMensaje").textContent = "Contraseña incorrecta.";
   }
 }
 
-function mostrarHistorial() {
-  const contenedor = document.getElementById("historial");
-  contenedor.innerHTML = "";
+function guardarTexto() {
+  const entrada = document.getElementById("entrada").value;
+  if (!entrada) return;
 
-  const entradas = JSON.parse(localStorage.getItem("entradas")) || [];
+  const textoCifrado = CryptoJS.AES.encrypt(entrada, claveSecreta).toString();
+  localStorage.setItem("miDiario", textoCifrado);
 
-  if (entradas.length > 0) {
-    entradas.forEach((entrada) => {
-      const div = document.createElement("div");
-      div.className = "entrada-historial";
-      div.innerHTML = `<strong>${entrada.fecha}</strong><p>${entrada.texto}</p>`;
-      contenedor.appendChild(div);
-    });
+  document.getElementById("mensaje").textContent = "Guardado correctamente.";
+  setTimeout(() => document.getElementById("mensaje").textContent = "", 2000);
+}
+
+function cargarTexto() {
+  const textoGuardado = localStorage.getItem("miDiario");
+  if (textoGuardado) {
+    const bytes = CryptoJS.AES.decrypt(textoGuardado, claveSecreta);
+    const textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
+    document.getElementById("entrada").value = textoDescifrado;
   }
 }
-function guardar() {
 
-  const texto = document.getElementById("entrada").value;
-
-  if (texto.trim() !== "") {
-
-    let entradas = JSON.parse(localStorage.getItem("entradas")) || [];
-
-    entradas.push({ texto, fecha: new Date().toLocaleString() });
-
-    localStorage.setItem("entradas", JSON.stringify(entradas));
-
-    alert(lang === "es" ? "Entrada guardada." : "Entry saved.");
-
+function borrarTodo() {
+  if (confirm("¿Estás seguro de que quieres borrar tu diario?")) {
+    localStorage.removeItem("miDiario");
     document.getElementById("entrada").value = "";
-
-    mostrarEntradas();
-
-  } else {
-
-    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
-
+    document.getElementById("mensaje").textContent = "Diario eliminado.";
+    setTimeout(() => document.getElementById("mensaje").textContent = "", 2000);
   }
-
 }
 
-function mostrarEntradas() {
+function exportarTxt() {
+  const texto = document.getElementById("entrada").value;
+  const fecha = new Date().toLocaleString();
+  const contenido = `Mi Diario - ${fecha}\n\n${texto}`;
+  const blob = new Blob([contenido], { type: "text/plain" });
+  const enlace = document.createElement("a");
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = "MiDiario.txt";
+  enlace.click();
+}
 
-  const contenedor = document.getElementById("entradas-guardadas");
-
-  contenedor.innerHTML = "";
-
-  const entradas = JSON.parse(localStorage.getItem("entradas")) || [];
-
-  entradas.forEach((entrada) => {
-
-    const div = document.createElement("div");
-
-    div.className = "entrada";
-
-    div.innerHTML = `<p>${entrada.texto}</p><small>${entrada.fecha}</small><hr>`;
-
-    contenedor.appendChild(div);
-
+function mostrarFecha() {
+  const hoy = new Date();
+  const fechaTexto = hoy.toLocaleDateString("es-DO", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
   });
-
-}
-
-document.addEventListener("DOMContentLoaded", mostrarEntradas);
-
-mostrarEntradas();
-function nuevaFrase() {
-
-  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
-
-  document.getElementById("frase").innerText = fraseAleatoria;
-
-}
-function nuevaFrase() {
-
-  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
-
-  document.getElementById("frase").innerText = fraseAleatoria;
-
-}
-function marcarLeido(boton) {
-
-  boton.innerText = "Leído";
-
-  boton.disabled = true;
-
-}
-
-function nuevaFrase() {
-
-  const fraseAleatoria = frases[lang][Math.floor(Math.random() * frases[lang].length)];
-
-  document.getElementById("frase").innerText = fraseAleatoria;
-
-}
-function guardar() {
-
-  const texto = document.getElementById("entrada").value;
-
-  const respuestaEl = document.getElementById("respuesta");
-
-  if (texto.trim() !== "") {
-
-    let entradas = JSON.parse(localStorage.getItem("diario")) || [];
-
-    entradas.push({ texto, fecha: new Date().toLocaleString() });
-
-    localStorage.setItem("diario", JSON.stringify(entradas));
-
-    document.getElementById("entrada").value = "";
-
-    // Mostrar respuesta automática
-
-    const respuestas = {
-
-      es: [
-
-        "Gracias por compartir, todo lo que sientes es válido.",
-
-        "Tu historia importa, no estás solo.",
-
-        "Estoy aquí para escucharte siempre que lo necesites."
-
-      ],
-
-      en: [
-
-        "Thank you for sharing, your feelings are valid.",
-
-        "Your story matters, you're not alone.",
-
-        "I'm here to listen whenever you need."
-
-      ]
-
-    };
-
-    const respuestaRandom = respuestas[lang][Math.floor(Math.random() * respuestas[lang].length)];
-
-    respuestaEl.innerText = respuestaRandom;
-
-  } else {
-
-    alert(lang === "es" ? "Por favor escribe algo." : "Please write something.");
-
-  }
-
-}
-
-const libros = document.querySelectorAll('.libro');
-
-libros.forEach(libro => {
-
-  libro.addEventListener('click', () => {
-
-    libro.classList.toggle('seleccionado');
-
-  });
-
-});
+  document.getElementById("fecha").textContent = `Hoy es ${fechaTexto}`;
+      }
